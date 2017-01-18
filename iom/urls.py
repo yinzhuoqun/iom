@@ -20,14 +20,33 @@ from iom.views import *
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^base/', base),
+    url(r'^blank/', blank),
+    url(r'^buttons/', buttons),
+
+    url(r'^flot/', flot),
+    url(r'^forms/', froms),
+
+    url(r'^grid/', grid),
+
+    url(r'^icons/', icons),
     url(r'^index/', index),
     url(r'^$', index),
-    url(r'^blank/', blank),
+
     url(r'^login/', login),
-    url(r'^froms/', froms),
-    url(r'^tables/', tables),
-    url(r'^flot/', flot),
+
     url(r'^morris/', morris),
+
+    url(r'^notificions/', notificions),
+
+    url(r'^panels_wells/', panels_wells),
+
+    url(r'^tables/', tables),
+
+    url(r'^typography/', typography),
+
+
 
 
 

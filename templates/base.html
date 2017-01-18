@@ -10,7 +10,15 @@
     <meta name="author" content="">
 
 {#    <title>SB Admin 2 - Bootstrap Admin Theme</title>#}
-    <title>{{ index_info.title_name }}</title>
+    <title>
+        {% block 'title' %}
+        {{ index_info.title_name }}
+        {% endblock %}
+    </title>
+
+    {% block 'style' %}
+
+    {% endblock %}
 
     <!-- Bootstrap Core CSS -->
     <link href="/static/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -244,6 +252,7 @@
                     <!-- /.dropdown-alerts -->
                 </li>
                 <!-- /.dropdown -->
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -254,7 +263,7 @@
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li><a href="/login"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -263,6 +272,7 @@
             </ul>
             <!-- /.navbar-top-links -->
 
+{#            左侧导航栏开始#}
             <div class="navbar-default sidebar" role="navigation">
                 <div class="sidebar-nav navbar-collapse">
                     <ul class="nav" id="side-menu">
@@ -302,22 +312,22 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
+                                    <a href="/panels_wells">Panels and Wells</a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">Buttons</a>
+                                    <a href="/buttons">Buttons</a>
                                 </li>
                                 <li>
                                     <a href="notifications.html">Notifications</a>
                                 </li>
                                 <li>
-                                    <a href="typography.html">Typography</a>
+                                    <a href="/typography">Typography</a>
                                 </li>
                                 <li>
-                                    <a href="icons.html"> Icons</a>
+                                    <a href="/icons"> Icons</a>
                                 </li>
                                 <li>
-                                    <a href="grid.html">Grid</a>
+                                    <a href="/grid">Grid</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -370,6 +380,8 @@
             </div>
             <!-- /.navbar-static-side -->
         </nav>
+{#        左侧导航栏结束#}
+
 
         <div id="page-wrapper">
             <div class="row">
