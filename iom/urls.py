@@ -14,7 +14,24 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from iom.views import *
+
+
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^index/', index),
+    url(r'^$', index),
+    url(r'^blank/', blank),
+    url(r'^login/', login),
+    url(r'^froms/', froms),
+    url(r'^tables/', tables),
+    url(r'^flot/', flot),
+    url(r'^morris/', morris),
+
+
+
+
+
+
 ]
