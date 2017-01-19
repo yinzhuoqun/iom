@@ -17,9 +17,12 @@ from django.contrib import admin
 from iom.views import *
 
 
-
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^404/(?P<error>\w+)', forbiden),
+    url(r'^server/', include('server.urls')),
+    url(r'^api/', include('api.urls')),
 
     url(r'^base/', base),
     url(r'^blank/', blank),
@@ -35,6 +38,7 @@ urlpatterns = [
     url(r'^$', index),
 
     url(r'^login/', login),
+    url(r'^logout/', logout),
 
     url(r'^morris/', morris),
 
@@ -42,15 +46,11 @@ urlpatterns = [
 
     url(r'^panels_wells/', panels_wells),
 
+    url(r"^register/", register),
+
     url(r'^tables/', tables),
+    url(r'^test/', test),
 
     url(r'^typography/', typography),
-
-
-
-
-
-
-
 
 ]
