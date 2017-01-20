@@ -11,7 +11,7 @@ from server.models import *
 # @login_valid
 def list(request):
     statue = "服务器展示页"
-    table_list = Server.objects.all()
+    # table_list = Server.objects.all()
     return render_to_response("list.html", locals())
 
 def content(request,ids):

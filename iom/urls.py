@@ -15,12 +15,15 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from iom.views import *
+# import server
+# import api
+
 
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
 
-    url(r'^404/(?P<error>\w+)', forbiden),
+    url(r'^404/(?P<error>\w+)', notfound),
     url(r'^server/', include('server.urls')),
     url(r'^api/', include('api.urls')),
 

@@ -42,7 +42,7 @@
                     </span>
                     <span style="color: red" id="times">
                     </span>
-                    <span style="color: red">
+                    <span id="errormsg" style="color: red">
                         &nbsp;秒后跳转到登录页
                     </span>
             </div>
@@ -80,7 +80,9 @@
                         $("#times").text(intDiff);
                         timer(intDiff);
                     }else{
-                        alert("hi world")
+                        document.getElementById('error').innerHTML='很抱歉，你找的页面不存在';
+                        document.getElementById('errormsg').innerHTML='';
+{#                        alert("嗨， 您好！")#}
                     }
                 }
         )
