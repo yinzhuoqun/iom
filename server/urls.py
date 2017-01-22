@@ -14,6 +14,6 @@ from django.conf.urls import include, url
 from server.views import *
 
 urlpatterns = [
-    url(r'list/', list),
+    url(r'servers', servers),
     url(r'content/(?P<ids>\d{1,3})', content),
 ]

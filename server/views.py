@@ -10,11 +10,12 @@ from server.models import *
 
 
 # @login_valid
-def list(request):
+def servers(request):
     title = 'ServerList | IOM '
     statue = "服务器展列表"
-    # table_list = Server.objects.all()
-    return render_to_response("list.html", locals())
+    servers_info = Server.objects.all()
+    print(Server.objects.all()[0].joined)
+    return render_to_response("servers.html", locals())
 
 
 def content(request, ids):

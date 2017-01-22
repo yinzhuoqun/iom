@@ -113,7 +113,7 @@ def register(request):
         # print(registerFrom.is_valid())
         if registerFrom.is_valid():
             clear_data = registerFrom.cleaned_data
-            print(clear_data.get("'user_name'"), clear_data.get("user_password"))
+            # print(clear_data.get("'user_name'"), clear_data.get("user_password"))
 
             # 存数据库
             u_info = Users(
@@ -134,6 +134,16 @@ def register(request):
 
 
 def logout(request):
+
+    # if request.method == "POST" and request.POST:
+    #     username = request.POST.get("username", "").strip()
+    #     print(username)
+    #      # 退出的时候标记在线状态为 OFF
+    #     user = Users.objects.get(user_name=username)
+    #     user.user_online = "OFF"
+    #     print(user)
+    #     user.save()
+
     try:
         del request.COOKIES["username"]
     except Exception as e:
@@ -142,14 +152,6 @@ def logout(request):
         del request.session["username"]
     except Exception as e:
         pass
-
-    if request.method == "POST" and request.POST:
-        username = request.POST.get("username", "").strip()
-
-    #退出的时候标记在线状态为 OFF
-    # user = Users.objects.get(user_name=username).update(user_online="OFF")
-    # print(user)
-    # user.save()
 
     return render_to_response("logout.html")
 
@@ -161,7 +163,7 @@ def login(request):
         password = request.POST.get("password", "")
         # print(username)
         # print(password)
-        print(user_valid(username, password))
+        # print(user_valid(username, password))
         if username and password and user_valid(username, password):
             response = HttpResponseRedirect("/index")
             response.set_cookie("username", username)
@@ -171,7 +173,7 @@ def login(request):
             # 登陆的时候标记在线状态为 ON
             user = Users.objects.get(user_name=username)#.update(user_online="ON")
             user.user_online = "ON"
-            print(user)
+            # print(user)
             user.save()
             return render(request, "index.html", locals())
         else:
@@ -209,7 +211,7 @@ def list(request):
             "model": "HPE DL380 Gen9"
         },
     ]
-    return render_to_response("list.html", locals())
+    return render_to_response("servers.html", locals())
 
 
 #
