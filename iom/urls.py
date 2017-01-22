@@ -47,6 +47,8 @@ urlpatterns = [
 
     url(r'^notificions/', notificions),
 
+    url(r'^users/', users),
+
     url(r'^panels_wells/', panels_wells),
 
     url(r"^register/", register),

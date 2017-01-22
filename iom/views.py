@@ -142,6 +142,15 @@ def logout(request):
         del request.session["username"]
     except Exception as e:
         pass
+
+    if request.method == "POST" and request.POST:
+        username = request.POST.get("username", "").strip()
+
+    #退出的时候标记在线状态为 OFF
+    # user = Users.objects.get(user_name=username).update(user_online="OFF")
+    # print(user)
+    # user.save()
+
     return render_to_response("logout.html")
 
 
@@ -150,20 +159,32 @@ def login(request):
     if request.method == "POST" and request.POST:
         username = request.POST.get("username", "").strip()
         password = request.POST.get("password", "")
-        print(username)
-        print(password)
+        # print(username)
+        # print(password)
         print(user_valid(username, password))
         if username and password and user_valid(username, password):
             response = HttpResponseRedirect("/index")
             response.set_cookie("username", username)
             request.session["username"] = username
             # return response
+
+            # 登陆的时候标记在线状态为 ON
+            user = Users.objects.get(user_name=username)#.update(user_online="ON")
+            user.user_online = "ON"
+            print(user)
+            user.save()
             return render(request, "index.html", locals())
         else:
             result["error"] = "用户名或密码错误"
             return render(request, "login.html", locals())
     else:
         return render(request, "login.html", locals())
+
+
+def users(request):
+    user = Users.objects.all()
+
+    return render_to_response("users.html", locals())
 
 
 def notfound(request, error):

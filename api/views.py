@@ -8,7 +8,7 @@ def savedata(request):
     result = {}
     if request.method == "POST" and request.POST:
         req_data = request.POST
-        server = Server() #
+        server = Server() # 实例化
         server.host = req_data.get("hostname")
         server.ip = req_data.get("ip")
         server.mac = req_data.get("mac")
