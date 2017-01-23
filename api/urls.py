@@ -12,6 +12,9 @@ logging.basicConfig(level=logging.INFO)
 from django.conf.urls import include, url
 from api.views import *
 
+
+
 urlpatterns = [
+    url(r"list", list),
     url(r"savedata", savedata),
 ]

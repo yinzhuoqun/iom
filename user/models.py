@@ -15,7 +15,7 @@ class Users(models.Model):
     user_email = models.EmailField(max_length=254, verbose_name='用户邮箱')
     user_phone = models.CharField(max_length=18, verbose_name='用户手机',
                                   blank=True, null=True)
-    user_photo = models.ImageField(upload_to='images/user_photo', verbose_name='用户头像',
+    user_avatar = models.ImageField(upload_to='upload/user_avatar', verbose_name='用户头像',
                                    blank=True, null=True)
 
     # DateField.auto_now_add 当对象第一次被创建时自动设置当前时间。用于创建时间的时间戳. 它总是使用当前日期；和你可以覆盖的那种默认值不一样。

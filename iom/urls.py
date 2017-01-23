@@ -15,8 +15,12 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from iom.views import *
+
 # import server
 # import api
+
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 
@@ -58,4 +62,13 @@ urlpatterns = [
 
     url(r'^typography/', typography),
 
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# 导入setting、static 是为 media 用
+# from django.conf import settings
+# from django.conf.urls.static import static
+# urlpatterns = [
+#
+# # ... the rest of your URLconf goes here ...
+#
+# ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

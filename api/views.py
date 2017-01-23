@@ -30,3 +30,8 @@ def savedata(request):
     else:
         result["statue"] = "error"
     return JsonResponse(result)
+
+
+def list(request):
+
+    return render(request, "index.html",locals())

@@ -109,20 +109,22 @@ def register(request):
 
     statue = "用户注册"
     if request.method == "POST" and request.POST:
+        #数据中有图像字段，因此实例化Form类时，要加上第2个参数requst.FILES。
         registerFrom = RegisterForm(request.POST, request.FILES)  # registerFrom 网页变量
         # print(registerFrom.is_valid())
         if registerFrom.is_valid():
             clear_data = registerFrom.cleaned_data
             # print(clear_data.get("'user_name'"), clear_data.get("user_password"))
-
+            print(clear_data.get("user_avatar"))
             # 存数据库
             u_info = Users(
                 user_name=clear_data.get('user_name').strip(),  # 第一个user_name是数据库的字段名称，第二个user_name是表单的名称获取页面变量的值
                 user_password=calc_md5(clear_data.get("user_name"), clear_data.get("user_password")),
                 user_email=clear_data.get("user_email").strip(),
                 user_phone=clear_data.get("user_phone").strip(),
-                user_photo=clear_data.get("user_photo")
+                user_avatar=clear_data.get("user_avatar")
             )
+            print(u_info.user_avatar)
             u_info.save()
             # del request.COOKIES["username"]
             # del request.session["username"]
@@ -185,7 +187,7 @@ def login(request):
 
 def users(request):
     user = Users.objects.all()
-
+    statue = "用户列表"
     return render_to_response("users.html", locals())
 
 

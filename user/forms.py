@@ -22,7 +22,7 @@ class RegisterForm(forms.Form):
 
     user_phone = forms.CharField(max_length=18, label='用户手机', required=False,
                                  widget=forms.TextInput(attrs={'class': 'form-control'}))
-    user_photo = forms.ImageField(label='用户头像', required=False)  # ImageField字段需要调用Pillow 库.
+    user_avatar = forms.ImageField(label='用户头像', required=False)  # ImageField字段需要调用Pillow 库.
 
     def clean_user_name(self):
         user_name = self.cleaned_data.get("user_name", "")

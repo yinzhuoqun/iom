@@ -12,7 +12,7 @@ from server.models import *
 # @login_valid
 def servers(request):
     title = 'ServerList | IOM '
-    statue = "服务器展列表"
+    statue = "服务器列表"
     servers_info = Server.objects.all()
     print(Server.objects.all()[0].joined)
     return render_to_response("servers.html", locals())
@@ -21,7 +21,7 @@ def servers(request):
 def content(request, ids):
     Server_data = Server.objects.get(id=int(ids))
     hostname = Server_data.host.strip()
-    statue = "%s 详情页" % hostname.encode("utf-8")
+    statue = "%s 服务器详情信息" % hostname
     host_data = {
         "hostname": Server_data.host,
         "ip": Server_data.ip,
@@ -31,6 +31,7 @@ def content(request, ids):
         "disk": Server_data.disk,
         "system": Server_data.system,
         "model": Server_data.model,
-        "id": Server_data.id
+        "id": Server_data.id,
+        "joined":Server_data.joined
     }
     return render_to_response("server_content.html", locals())
