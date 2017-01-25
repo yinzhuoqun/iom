@@ -11,7 +11,7 @@ logging.basicConfig(level=logging.INFO)
 from django.shortcuts import render
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
-from user.models import Users
+from user.models import *
 from user.forms import *
 import hashlib
 
@@ -19,6 +19,7 @@ import hashlib
 # Create your views here.
 
 
+projectname ="IOM"
 
 def calc_md5(data, data1):
     """
@@ -57,7 +58,7 @@ def user_exists(username):
 def login_valid(func):  # 这是一个装饰器的函数，外层的函数是用来接收被装饰函数的的
     def inner(request, *args, **kwargs):
         try:
-            username = request.session["user_name"]  # 尝试获取session
+            username = request.session["username"]  # 尝试获取session
             return func(request)  # index(request) 如果获取到执行被装饰函数
         except KeyError as e:  # 否则返回404页面
             if repr(e) == "KeyError('username',)":
@@ -96,7 +97,7 @@ def test(request):
 
 # @login_valid
 def register(request):
-    #清除登录记录
+    # 清除登录记录
     try:
         del request.COOKIES["username"]
     except Exception as e:
@@ -106,10 +107,9 @@ def register(request):
     except Exception as e:
         pass
 
-
     statue = "用户注册"
     if request.method == "POST" and request.POST:
-        #数据中有图像字段，因此实例化Form类时，要加上第2个参数requst.FILES。
+        # 数据中有图像字段，因此实例化Form类时，要加上第2个参数requst.FILES。
         registerFrom = RegisterForm(request.POST, request.FILES)  # registerFrom 网页变量
         # print(registerFrom.is_valid())
         if registerFrom.is_valid():
@@ -136,15 +136,19 @@ def register(request):
 
 
 def logout(request):
-
-    # if request.method == "POST" and request.POST:
-    #     username = request.POST.get("username", "").strip()
-    #     print(username)
+    # print(request.method)
+    print(request.GET)
+    if request.method == "GET" and request.GET:
+        username = request.session.get()
+        # username = request.GET.get("username", "").strip()
+        print('name:', username)
     #      # 退出的时候标记在线状态为 OFF
     #     user = Users.objects.get(user_name=username)
     #     user.user_online = "OFF"
     #     print(user)
     #     user.save()
+
+
 
     try:
         del request.COOKIES["username"]
@@ -155,7 +159,7 @@ def logout(request):
     except Exception as e:
         pass
 
-    return render_to_response("logout.html")
+    return render_to_response("logout.html",locals())
 
 
 def login(request):
@@ -173,7 +177,7 @@ def login(request):
             # return response
 
             # 登陆的时候标记在线状态为 ON
-            user = Users.objects.get(user_name=username)#.update(user_online="ON")
+            user = Users.objects.get(user_name=username)  # .update(user_online="ON")
             user.user_online = "ON"
             # print(user)
             user.save()
@@ -188,11 +192,43 @@ def login(request):
 def users(request):
     user = Users.objects.all()
     statue = "用户列表"
+    location = "用户信息 > 用户列表"
     return render_to_response("users.html", locals())
 
 
 def notfound(request, error):
     return render_to_response("404.html", locals())
+
+
+def groups(request):
+    group = Groups.objects.all()
+    statue = "用户组"
+    title = "Groups"
+    location = "用户组信息 > 用户组"
+    return render(request, 'groups.html', locals())
+
+
+def userpermission(request):
+    userp = UserPermission.objects.all()
+    statue = "用户权限"
+    title = "UserPermission"
+    location = "用户信息 > 用户权限"
+    return render(request, 'user_permission.html', locals())
+
+
+def grouppermission(request):
+    groupp = GroupPermission.objects.all()
+    statue = "用户组权限"
+    title = "GroupPermission"
+    location = "用户组信息 > 用户组权限"
+    return render(request, 'group_permission.html', locals())
+
+def permission(request):
+    perm = Permission.objects.all()
+    statue = "权限"
+    title = "Permission"
+    location = "用户信息 > 权限"
+    return render(request, 'permission.html', locals())
 
 
 def list(request):

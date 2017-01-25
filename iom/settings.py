@@ -118,4 +118,9 @@ STATICFILES_DIRS = [
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media").replace('\\', '/')
 
+# 不用导入模块，session 有效期,时间单位 ms
+SESSION_COOKIE_AGE = 60 * 60
+
+# 退出浏览器清除 session
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 

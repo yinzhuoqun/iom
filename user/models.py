@@ -4,6 +4,7 @@ __author__ = 'yinzhuoqun'
 
 from django.db import models
 
+
 # Create your models here.
 
 
@@ -16,7 +17,7 @@ class Users(models.Model):
     user_phone = models.CharField(max_length=18, verbose_name='用户手机',
                                   blank=True, null=True)
     user_avatar = models.ImageField(upload_to='upload/user_avatar', verbose_name='用户头像',
-                                   blank=True, null=True)
+                                    blank=True, null=True)
 
     # DateField.auto_now_add 当对象第一次被创建时自动设置当前时间。用于创建时间的时间戳. 它总是使用当前日期；和你可以覆盖的那种默认值不一样。
     user_data_joined = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
@@ -30,6 +31,17 @@ class Groups(models.Model):
     user_group = models.CharField(max_length=32, verbose_name='用户组')
 
 
-class Roles(models.Model):
-    name = models.CharField(max_length=32, verbose_name="权限")
+class Permission(models.Model):
+    content_type_id = models.IntegerField(verbose_name="类型编码")
+    codename = models.CharField(max_length=32, verbose_name="编码名称")
+    name = models.CharField(max_length=32, verbose_name="权限名称")
 
+
+class UserPermission(models.Model):
+    user_id = models.IntegerField(verbose_name="用户 ID")
+    permission_id = models.IntegerField(verbose_name="权限 ID")
+
+
+class GroupPermission(models.Model):
+    group_id = models.IntegerField(verbose_name="组 ID")
+    permission_id = models.IntegerField(verbose_name="权限 ID")

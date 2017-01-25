@@ -39,6 +39,8 @@ urlpatterns = [
     url(r'^forms/', froms),
 
     url(r'^grid/', grid),
+    url(r'^groups', groups),
+    url(r'^groupp', grouppermission),
 
     url(r'^icons/', icons),
     url(r'^index/', index),
@@ -51,9 +53,11 @@ urlpatterns = [
 
     url(r'^notificions/', notificions),
 
-    url(r'^users/', users),
-
     url(r'^panels_wells/', panels_wells),
+    url(r'^perm/', permission),
+
+    url(r'^users/', users),
+    url(r'^userp/', userpermission),
 
     url(r"^register/", register),
 

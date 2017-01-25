@@ -47,7 +47,7 @@ def mkdir_log_path(log_dir):
     创建日志的目录，如果已存在则不需创建
     """
     if not os.path.isdir(log_dir):
-        print("创建%s目录" % log_dir)
+        print("创建 %s 目录" % log_dir)
         os.makedirs(log_dir)
 
 
