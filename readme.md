@@ -2,9 +2,14 @@
 > 智能运维 IOM (Intelligence Operation and Maintenance)
 
 #### 项目环境
-> python 3.4.3
+> python ：3.4.3
+>
+> django ：1.8.17
 
-> django 1.8.17
+#### 服务器环境（客户端）
+> python ：3.4.3
+>
+>
 
 #### django admin 账号
 > super user : iom

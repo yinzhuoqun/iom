@@ -13,6 +13,7 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
 from user.models import *
 from user.forms import *
+from server.models import *
 import hashlib
 
 
@@ -82,8 +83,10 @@ def login_valid(func):  # 这是一个装饰器的函数，外层的函数是用
 
 @login_valid  # index = login_valid(index)  # login_valid(index) = inner  #index = inner
 def index(request):
-    statue = "首页"
-    return render_to_response("index.html", locals())
+    statue = "Home | IOM"
+    users_total = len(Users.objects.all())
+    servers_total = len(Server.objects.all())
+    return render(request, "index.html", locals())
 
 
 # @login_valid
