@@ -20,7 +20,6 @@ import hashlib
 # Create your views here.
 
 
-projectname ="IOM"
 
 def calc_md5(data, data1):
     """
@@ -207,6 +206,7 @@ def groups(request):
     group = Groups.objects.all()
     statue = "用户组"
     title = "Groups"
+    projectname = "IOM"
     location = "用户组信息 > 用户组"
     return render(request, 'groups.html', locals())
 
@@ -215,6 +215,7 @@ def userpermission(request):
     userp = UserPermission.objects.all()
     statue = "用户权限"
     title = "UserPermission"
+    projectname = "IOM"
     location = "用户信息 > 用户权限"
     return render(request, 'user_permission.html', locals())
 
@@ -223,6 +224,7 @@ def grouppermission(request):
     groupp = GroupPermission.objects.all()
     statue = "用户组权限"
     title = "GroupPermission"
+    projectname = "IOM"
     location = "用户组信息 > 用户组权限"
     return render(request, 'group_permission.html', locals())
 
@@ -230,6 +232,7 @@ def permission(request):
     perm = Permission.objects.all()
     statue = "权限"
     title = "Permission"
+    projectname = "IOM"
     location = "用户信息 > 权限"
     return render(request, 'permission.html', locals())
 
