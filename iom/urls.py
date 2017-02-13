@@ -16,22 +16,63 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from iom.views import *
 
+# import server
+# import api
+
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^404/(?P<error>\w+)', notfound),
+    url(r'^server/', include('server.urls')),
+    url(r'^api/', include('api.urls')),
+
+    url(r'^base/', base),
+    url(r'^blank/', blank),
+    url(r'^buttons/', buttons),
+
+    url(r'^flot/', flot),
+    url(r'^forms/', froms),
+
+    url(r'^grid/', grid),
+    url(r'^groups', groups),
+    url(r'^groupp', grouppermission),
+
+    url(r'^icons/', icons),
     url(r'^index/', index),
     url(r'^$', index),
-    url(r'^blank/', blank),
+
     url(r'^login/', login),
-    url(r'^froms/', froms),
-    url(r'^tables/', tables),
-    url(r'^flot/', flot),
+    url(r'^logout/', logout),
+
     url(r'^morris/', morris),
 
+    url(r'^notificions/', notificions),
 
+    url(r'^panels_wells/', panels_wells),
+    url(r'^perm/', permission),
 
+    url(r'^users/', users),
+    url(r'^userp/', userpermission),
 
+    url(r"^register/", register),
 
+    url(r'^tables/', tables),
+    url(r'^test/', test),
 
-]
+    url(r'^typography/', typography),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# 导入setting、static 是为 media 用
+# from django.conf import settings
+# from django.conf.urls.static import static
+# urlpatterns = [
+#
+# # ... the rest of your URLconf goes here ...
+#
+# ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

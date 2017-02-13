@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block 'title' %}
+    Register | IOM
+{% endblock %}
+
+{#{% block 'titletop' %}#}
+{#    #}
+{#{% endblock%}#}
+
+{% block 'titleleft' %}
+{% endblock%}
+
+{% block 'content' %}
+{#    form 上传文件需要带 enctype="multipart/form-data" #}
+    <form action="" method="post" class="register_form" id="register_form" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ registerFrom.as_p }}
+        <input type="submit" value="立即注册" class="btn btn-primary">
+    </form>
+    {{ errors }}
+{% endblock %}

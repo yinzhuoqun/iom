@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Title
+        </title>
+    </head>
+    <body>
+        {% for i in obj %}
+            {{ i.username }}
+
+        {% endfor %}
+        {{ user }}
+        <div>
+            {% for i in request %}
+                {{ i }}
+            {% endfor %}
+            {{ request.method }}
+            {{ req }}
+            <p>
+                {{ request.COOKIES.username }}
+            </p>
+        </div>
+    </body>
+</html>

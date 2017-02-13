@@ -26,6 +26,7 @@ SECRET_KEY = 'bb!zngjn7qf51)4nuyv1aiha524%tuu4!i-38i#9hingi6kuf-'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -49,7 +50,7 @@ INSTALLED_APPS = (
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -113,3 +114,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static').replace('\\', '/'),
 ]
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media").replace('\\', '/')
+
+# 不用导入模块，session 有效期,时间单位 ms
+SESSION_COOKIE_AGE = 60 * 60
+
+# 退出浏览器清除 session
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
