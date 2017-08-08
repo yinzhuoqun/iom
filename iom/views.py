@@ -139,18 +139,18 @@ def register(request):
 
 def logout(request):
     # print(request.method)
-    print(request.GET)
-    if request.method == "GET" and request.GET:
-        username = request.session.get()
+    # print(dir(request.GET))
+    # if request.method == "GET" and request.GET:
+    if request.method == "GET":
+        username = request.session.get("username")
         # username = request.GET.get("username", "").strip()
         print('name:', username)
-    #      # 退出的时候标记在线状态为 OFF
-    #     user = Users.objects.get(user_name=username)
-    #     user.user_online = "OFF"
-    #     print(user)
-    #     user.save()
 
-
+        # 退出的时候标记在线状态为 OFF
+        user = Users.objects.get(user_name=username)
+        user.user_online = "OFF"
+        # print(user)
+        user.save()
 
     try:
         del request.COOKIES["username"]
